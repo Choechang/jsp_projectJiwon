@@ -1,13 +1,18 @@
 package com.kh.board.model.dao;
 
+import static com.kh.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
-import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.board.model.vo.Board;
+import com.kh.common.model.vo.PageInfo;
 
 public class BoardDao {
 	
@@ -47,5 +52,15 @@ public class BoardDao {
 		}
 		
 		return listCount;
+	}
+	
+	public ArrayList<Board> selectList(Connection conn, PageInfo pi){
+		//select => ResultSet(여러행) => ArrayList<Board>
+		ArrayList<Board> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectList");
 	}
 }

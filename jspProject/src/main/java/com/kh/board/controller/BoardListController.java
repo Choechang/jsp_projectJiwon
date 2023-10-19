@@ -1,6 +1,7 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
+import com.kh.common.model.vo.PageInfo;
 
 /**
  * Servlet implementation class BoardListController
@@ -75,8 +78,46 @@ public class BoardListController extends HttpServlet {
 		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 	
+		/**
+		 * *startPage : 페이징바 시작수
+		 * 
+		 * pageLimit, currentPage에 영향을 받음
+		 * 
+		 * ex) 페이징바의 목록이 10단위씩이라는 가정하에
+		 * 		startPage : 1, 11, 21 , 31 ...
+		 * 				=> n*10 + 1
+		 * 				=> n*pageLimit + 1
+		 * 
+		 * 1~10   => n=0
+		 * 11~20  => n=1
+		 * 21~30  => n=2
+		 * ...
+		 * 
+		 * 
+		 */
+		
+		startPage = (currentPage - 1) / pageLimit*pageLimit+1;
+		
+		/**
+		 * *endPage : 페이징바의 끝수
+		 * 
+		 * startPage, pageLimit
+		 * 
+		 * pageLimit : 10이라는 가정하에
+		 * 
+		 * startPage : 1 => endPage: 10
+		 * startPage : 11 => endPage: 20
+		 * startPage : 21 => endPage: 30
+		 */
+		
+		endPage = startPage + pageLimit - 1;
+		
+		//startPage가 11이면 endPage는 20이 됨(만약 maxPage가 13이라면?)
+		endPage = endPage > maxPage ? maxPage : endPage;
 	
-	
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		
+		ArrayList<Board> list = new BoardService().selectList(pi);
 	
 	}
 
