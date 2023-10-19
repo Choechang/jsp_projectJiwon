@@ -93,10 +93,25 @@ public class BoardListController extends HttpServlet {
 		 * 21~30  => n=2
 		 * ...
 		 * 
+		 * currentPage		pageLimit		startPage
+		 * 		1				10		=> 		1		=> 		0*pageLimit + 1 (n=0)
+		 * 		5				10		=> 		1		=> 		0*pageLimit + 1 (n=0)
+		 * 		11				10		=> 		2		=> 		0*pageLimit + 1 (n=1)
 		 * 
+		 * 		1~10	=> n=0
+		 * 		11~20	=> n=1
+		 * 		21~30	=> n=2
+		 * 		...
+		 * currentPage - 1   /  pageLimit => n
+		 *     0~9			 /		10		 0
+		 *     10~19		 /		10		 1		
+		 *     20~29		 / 		10		 2
+		 *     
+		 *startPage = 				n				*		pageLimit + 1
+		 *			= (currentPage - 1)/pageLimit	*		pageLimit + 1
 		 */
 		
-		startPage = (currentPage - 1) / pageLimit*pageLimit+1;
+		startPage = ((currentPage - 1) / pageLimit) * pageLimit+1;
 		
 		/**
 		 * *endPage : 페이징바의 끝수
@@ -119,6 +134,10 @@ public class BoardListController extends HttpServlet {
 		
 		ArrayList<Board> list = new BoardService().selectList(pi);
 	
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
 	}
 
 	/**

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.common.model.vo.PageInfo, java.util.ArrayList, com.kh.board.model.vo.Board" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,12 +38,14 @@
         <h2 align="center">일반게시판</h2>
         <br>
 
-        <!-- 로그인한 회원보이게 -->
-        <div align="right" style="width: 850px;">
-            <button>글작성</button>
-            <br><br>
-        </div>
-
+		<% if (loginUser != null) {%>
+	        <!-- 로그인한 회원보이게 -->
+	        <div align="right" style="width: 850px;">
+	            <button>글작성</button>
+	            <br><br>
+	        </div>
+        <%} %>
+	
         <table align="center" class="list-area">
             <thead>
                 <tr>
@@ -51,92 +58,20 @@
                 </tr>
             </thead>
             <tbody>
-                <!--case1. 게시글이 없을 때 -->
-                <tr>
-                    <td colspan="6">조회된 게시글이 없습니다.</td>
-                </tr>
-
+            	<%if(list.isEmpty()){ %>
+	                <!--case1. 게시글이 없을 때 -->
+	                <tr>
+	                    <td colspan="6">조회된 게시글이 없습니다.</td>
+	                </tr>
+				<%} else {%>
                 <!--case2. 게시글이 있을 때 -->
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>등산</td>
-                    <td>제목입니다1</td>
-                    <td>user01</td>
-                    <td>203</td>
-                    <td>2022-12-05</td>
-                </tr>
+                
+	                <% for(Board b : list){ %>
+	                	<tr>
+	                		
+	                	</tr>
+	                <%} %>
+                <%} %>
             </tbody>
         </table>
         <br><br>
