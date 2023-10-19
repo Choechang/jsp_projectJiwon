@@ -65,10 +65,14 @@
 	                </tr>
 				<%} else {%>
                 <!--case2. 게시글이 있을 때 -->
-                
 	                <% for(Board b : list){ %>
 	                	<tr>
-	                		
+	                		<td><%=b.getBoardNo() %></td>
+	                		<td><%=b.getCategory() %></td>
+	                		<td><%=b.getBoardTitle() %></td>
+	                		<td><%=b.getBoardWriter() %></td>
+	                		<td><%=b.getCount() %></td>
+	                		<td><%=b.getCreateDate() %></td>
 	                	</tr>
 	                <%} %>
                 <%} %>
