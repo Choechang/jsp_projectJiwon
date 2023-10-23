@@ -60,4 +60,33 @@ public class BoardService {
 		
 		return result1 * result2;
 	}
+	
+	public Board increaseCount(int boardNo) {
+		Connection conn = getConnection();
+		
+		BoardDao bDao = new BoardDao();
+		int result = bDao.increaseCount(conn, boardNo);
+		
+		Board b = null;
+		if (result > 0) {
+			commit(conn);
+			//정보조회
+			b = bDao.selectBoard(conn, boardNo);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return b;
+	}
+	
+	public Attachment selectAttachment(int boardNO) {
+		Connection conn = getConnection();
+		Attachment at = new BoardDao().selectAttachment(conn, boardNO);
+		
+		close(conn);
+		
+		return at;
+	}
 }
