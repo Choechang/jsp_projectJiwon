@@ -31,6 +31,14 @@
         cursor: pointer;
         opacity: 0.8;
     }
+
+    .thumbnail p > span{
+        display: inline-block;
+        width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 </style>
 </head>
 <body>
@@ -55,15 +63,24 @@
         
         	<%for (Board b : list) { %>
 	            <div class="thumbnail" align="center">
+	            	<input type="hidden" value="<%=b.getBoardNo()%>">
 	                <img width="200" height="150" src="<%=contextPath%>/<%=b.getTitleImg()%>" alt="썸네일">
 	                <p>
-	                    No. <%=b.getBoardNo() %> <%=b.getBoardTitle() %> <br>
+	                    <span>No. <%=b.getBoardNo() %> <%=b.getBoardTitle() %></span><br>
 	                    조회수 : <%=b.getCount() %>
 	                </p>
 	            </div>
            <%} %>
-
         </div>
     </div>
+    
+    
+    <script>
+    	$(function(){
+    		$(".thumbnail").click(function(){
+    			location.href = "<%=contextPath%>/detail.th?bno=" + $(this).children().eq(0).val();
+    		})
+    	})
+    </script>
 </body>
 </html>
