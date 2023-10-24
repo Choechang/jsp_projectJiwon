@@ -380,11 +380,11 @@ public class BoardDao {
 		
 	}
 	
-	public int insertAttachementList(Connection conn, ArrayList<Attachment> list) {
+	public int insertAttachmentList(Connection conn, ArrayList<Attachment> list) {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachementList");
+		String sql = prop.getProperty("insertAttachmentList");
 		
 		
 			try {
@@ -408,5 +408,34 @@ public class BoardDao {
 		return result;
 	}
 	
-	
+	public ArrayList<Board> selectThumbnailList(Connection conn) {
+		ArrayList<Board> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectThumbnailList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("board_no"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setCount(rset.getInt("count"));
+				b.setTitleImg(rset.getString("title_img"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

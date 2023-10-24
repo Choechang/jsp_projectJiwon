@@ -10,6 +10,7 @@ public class Board {
 	private int count;
 	private String createDate;
 	private String status;
+	private String titleImg;
 	
 	public Board() {}
 
@@ -49,6 +50,15 @@ public class Board {
 		this.boardContent = boardContent;
 		this.boardWriter = boardWriter;
 		this.createDate = createDate;
+	}
+
+	
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
 	}
 
 	public int getBoardNo() {

@@ -79,7 +79,14 @@ public class ThumbnailInsertController extends HttpServlet {
 			
 			int result = new BoardService().insertThumbnailBoard(b, list);
 			
-			
+			if (result > 0) { //성공 => /jsp/list.th url재요청
+				request.getSession().setAttribute("alertMsg", "성공적으로 게시글 등록하였습니다");
+				response.sendRedirect(request.getContextPath() + "/list.th");
+				
+			} else { //실패 => 에러페이지 
+				request.setAttribute("errorMsg", "사진게시글 작성 실패");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}
 			
 			
 		}
