@@ -90,12 +90,24 @@
                 <thead>
                     <tr>
                         <th>댓글작성</th>
-                        <td>
-                            <textarea id="reply-content" cols="50" rows="3"></textarea>
-                        </td>
-                        <td>
-                            <button onclick="insertReply()">댓글등록</button>
-                        </td>
+                        
+                        <%if (loginUser != null) { %>
+	                        <td>
+	                            <textarea id="reply-content" cols="50" rows="3"></textarea>
+	                        </td>
+	                        <td>
+	                            <button onclick="insertReply()">댓글등록</button>
+	                        </td>
+                        <%} else { %>
+                        
+	                        <td>
+	                            <textarea id="reply-content" cols="50" rows="3" readonly>로그인 후 댓글작성 가능합니다.</textarea>
+	                        </td>
+	                        <td>
+	                            <button disabled>댓글등록</button>
+	                        </td>
+                        
+                        <%} %>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,6 +118,8 @@
             	window.onload = function(){
             		//댓글 가져와서 그려주기
             		selectReplyList();
+            		
+            		setInterval(selectReplyList,2000)
             	}
             	
             	function selectReplyList(){
@@ -145,10 +159,13 @@
                         },
                         type:"post",
                         success:function(res){
-                            console.log(res)
+                            if (res > 0) {//댓글작성 성공
+                            	document.getElementById("reply-content").value = "";
+                            	selectReplyList();
+                            }
                         },
                         error:function(){
-
+							console.log("댓글 작성중 ajax통신 실패")
                         }
                     })
                 }
