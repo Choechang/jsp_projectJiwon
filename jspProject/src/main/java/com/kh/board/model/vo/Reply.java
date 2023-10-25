@@ -1,0 +1,87 @@
+package com.kh.board.model.vo;
+
+public class Reply {
+
+	private int replyNo;
+	private String reply_content;
+	private int refBoardNo;
+	private String replyWriter;
+	private String createDate;
+	private String status;
+	
+	public Reply() {}
+
+	public Reply(int replyNo, String reply_content, int refBoardNo, String replyWriter, String createDate,
+			String status) {
+		super();
+		this.replyNo = replyNo;
+		this.reply_content = reply_content;
+		this.refBoardNo = refBoardNo;
+		this.replyWriter = replyWriter;
+		this.createDate = createDate;
+		this.status = status;
+	}
+
+	//리플리스트 가져올 때
+	public Reply(int replyNo, String reply_content, String replyWriter, String createDate) {
+		super();
+		this.replyNo = replyNo;
+		this.reply_content = reply_content;
+		this.replyWriter = replyWriter;
+		this.createDate = createDate;
+	}
+
+	public int getReplyNo() {
+		return replyNo;
+	}
+
+	public void setReplyNo(int replyNo) {
+		this.replyNo = replyNo;
+	}
+
+	public String getReply_content() {
+		return reply_content;
+	}
+
+	public void setReply_content(String reply_content) {
+		this.reply_content = reply_content;
+	}
+
+	public int getRefBoardNo() {
+		return refBoardNo;
+	}
+
+	public void setRefBoardNo(int refBoardNo) {
+		this.refBoardNo = refBoardNo;
+	}
+
+	public String getReplyWriter() {
+		return replyWriter;
+	}
+
+	public void setReplyWriter(String replyWriter) {
+		this.replyWriter = replyWriter;
+	}
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Reply [replyNo=" + replyNo + ", reply_content=" + reply_content + ", refBoardNo=" + refBoardNo
+				+ ", replyWriter=" + replyWriter + ", createDate=" + createDate + ", status=" + status + "]";
+	}
+}

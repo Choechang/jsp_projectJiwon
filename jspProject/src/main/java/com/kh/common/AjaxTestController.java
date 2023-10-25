@@ -1,11 +1,16 @@
 package com.kh.common;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class AjaxTestController
@@ -34,9 +39,55 @@ public class AjaxTestController extends HttpServlet {
 		
 		System.out.println(name + " : " + age);
 		
+		//여러개의 값을 응답하고 싶지만 할 수 없다.
+		//response.setContentType("text/html; charset=UTF-8");
+		//response.getWriter().print(name);
+		//response.getWriter().print(age);
+		
+		/*
+		 * JSON(자바스크립트 객체 표기법)
+		 * ajax통신시 데이터 전송에 자주사용되는 포맷형식중 하나
+		 * 
+		 *  > [value, value, value] <=자바스크립트에서 배열 => JSONArray
+		 *  > {key:value, key:value, key:value} => 자바스크립트에서의 일반객체 => JSONObject
+		 */
+		
+//		JSONArray jArr = new JSONArray();
+//		jArr.add(name);
+//		jArr.add(age);
+//		
+//		response.setContentType("text/html; charset=UTF-8");
+//		response.getWriter().print(jArr);
+		
+//		JSONObject jobj = new JSONObject(); // {}
+//		jobj.put("name", name);//{name: 김개똥}
+//		jobj.put("age", age);// {name:김개똥, age:10}
+//		
+//		response.setContentType("text/html; charset=UTF-8");
+//		response.getWriter().print(jobj);
+		
+		ArrayList<Member> list = new ArrayList<>();
+		list.add(new Member(1, "김개똥", "010545554451"));
+		list.add(new Member(2, "최개똥", "01022225555"));
+		list.add(new Member(3, "이개똥", "01065442142"));
+
+		// [{},{},{}]
+		
+//		JSONArray jArr = new JSONArray(); //[]
+//		for (Member m : list) {
+//			JSONObject jobj = new JSONObject();
+//			jobj.put("userNo", m.getUserNo());
+//			jobj.put("userName", m.getUserName());
+//			jobj.put("phone", m.getPhone());
+//			
+//			jArr.add(jobj);
+//		}
+//		
+//		response.setContentType("text/html; charset=UTF-8");
+//		response.getWriter().print(jArr);
+		
 		response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().print(name);
-		response.getWriter().print(age);
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

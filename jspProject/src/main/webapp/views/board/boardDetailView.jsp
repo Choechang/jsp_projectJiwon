@@ -18,15 +18,15 @@
         background: black;
         color: white;
         width: 1000px;
-        height: 500px;
+        height: auto;
         margin: auto;
         margin-top: 50px;
     }
-    .outer > table{
+    .outer table{
         border: 1px solid white;
         border-collapse: collapse;
     }
-    .outer > table tr, .outer > table td{
+    .outer table tr, .outer table td{
         border: 1px solid white;
     }
 </style>
@@ -83,8 +83,62 @@
             <%} %>
         </div>
 
+        <br>
 
-
+        <div id="reply-area">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th>댓글작성</th>
+                        <td>
+                            <textarea id="reply-content" cols="50" rows="3"></textarea>
+                        </td>
+                        <td>
+                            <button>댓글등록</button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>admin</td>
+                        <td>ㅎㅎㅎ재미있네요</td>
+                        <td>23/10/25 07:30</td>
+                    </tr>
+                    <tr>
+                        <td>admin</td>
+                        <td>ㅎㅎㅎ재미있네요</td>
+                        <td>23/10/25 07:30</td>
+                    </tr>
+                    <tr>
+                        <td>admin</td>
+                        <td>ㅎㅎㅎ재미있네요</td>
+                        <td>23/10/25 07:30</td>
+                    </tr>
+                </tbody>
+            </table>
+      
+            <script>
+            	window.onload = function(){
+            		//댓글 가져와서 그려주기
+            		selectReplyList();
+            	}
+            	
+            	function selectReplyList(){
+            		$.ajax({
+            			url: "rlist.bo",
+            			data : {
+            				bno: <%=b.getBoardNo()%>
+            			},
+            			success: function(res){
+            				console.log(res)
+            			},
+            			error: function(){
+            				console.log("댓글목록 조회중 ajax통신실패");
+            			}
+            		})
+            	}
+            </script>
+        </div>
     </div>
 </body>
 </html>
