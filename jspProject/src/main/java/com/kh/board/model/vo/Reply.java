@@ -3,7 +3,7 @@ package com.kh.board.model.vo;
 public class Reply {
 
 	private int replyNo;
-	private String reply_content;
+	private String replyContent;
 	private int refBoardNo;
 	private String replyWriter;
 	private String createDate;
@@ -11,11 +11,11 @@ public class Reply {
 	
 	public Reply() {}
 
-	public Reply(int replyNo, String reply_content, int refBoardNo, String replyWriter, String createDate,
+	public Reply(int replyNo, String replyContent, int refBoardNo, String replyWriter, String createDate,
 			String status) {
 		super();
 		this.replyNo = replyNo;
-		this.reply_content = reply_content;
+		this.replyContent = replyContent;
 		this.refBoardNo = refBoardNo;
 		this.replyWriter = replyWriter;
 		this.createDate = createDate;
@@ -26,7 +26,7 @@ public class Reply {
 	public Reply(int replyNo, String reply_content, String replyWriter, String createDate) {
 		super();
 		this.replyNo = replyNo;
-		this.reply_content = reply_content;
+		this.replyContent = reply_content;
 		this.replyWriter = replyWriter;
 		this.createDate = createDate;
 	}
@@ -39,12 +39,12 @@ public class Reply {
 		this.replyNo = replyNo;
 	}
 
-	public String getReply_content() {
-		return reply_content;
+	public String getReplyContent() {
+		return replyContent;
 	}
 
-	public void setReply_content(String reply_content) {
-		this.reply_content = reply_content;
+	public void setReplyContent(String replyContent) {
+		this.replyContent = replyContent;
 	}
 
 	public int getRefBoardNo() {
@@ -81,7 +81,7 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [replyNo=" + replyNo + ", reply_content=" + reply_content + ", refBoardNo=" + refBoardNo
+		return "Reply [replyNo=" + replyNo + ", replyContent=" + replyContent + ", refBoardNo=" + refBoardNo
 				+ ", replyWriter=" + replyWriter + ", createDate=" + createDate + ", status=" + status + "]";
 	}
 }

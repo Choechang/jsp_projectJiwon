@@ -94,26 +94,11 @@
                             <textarea id="reply-content" cols="50" rows="3"></textarea>
                         </td>
                         <td>
-                            <button>댓글등록</button>
+                            <button onclick="insertReply()">댓글등록</button>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>admin</td>
-                        <td>ㅎㅎㅎ재미있네요</td>
-                        <td>23/10/25 07:30</td>
-                    </tr>
-                    <tr>
-                        <td>admin</td>
-                        <td>ㅎㅎㅎ재미있네요</td>
-                        <td>23/10/25 07:30</td>
-                    </tr>
-                    <tr>
-                        <td>admin</td>
-                        <td>ㅎㅎㅎ재미있네요</td>
-                        <td>23/10/25 07:30</td>
-                    </tr>
                 </tbody>
             </table>
       
@@ -129,14 +114,44 @@
             			data : {
             				bno: <%=b.getBoardNo()%>
             			},
-            			success: function(res){
-            				console.log(res)
+            			success: function(res){          
+            				let str = "";
+            				for (let reply of res) {
+            					console.log(reply)
+            					str += "<tr>"
+       							+"<td>" + reply.replyWriter + "</td>"
+       							+"<td>" + reply.replyContent + "</td>"
+       							+"<td>" + reply.createDate + "</td>"
+       							+"</tr>";
+            					
+            				}
+            				
+            				document.querySelector("#reply-area tbody").innerHTML = str;
+            				
+            				
             			},
             			error: function(){
             				console.log("댓글목록 조회중 ajax통신실패");
             			}
             		})
             	}
+            
+                function insertReply(){
+                    $.ajax({
+                        url : "rinsert.bo",
+                        data : {
+                            content: document.getElementById("reply-content").value,
+                            bno: <%=b.getBoardNo()%>
+                        },
+                        type:"post",
+                        success:function(res){
+                            console.log(res)
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
             </script>
         </div>
     </div>
