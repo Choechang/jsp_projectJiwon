@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- jquery 3.7.1 -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<p>
@@ -71,8 +75,30 @@
 		-dataFilter: response를 받았을 때 정상적인 값을 return할 수 있도록 데이터와 데이터타입 설정
 		-timeout: 서버요청시 응답대기시간
 		</pre>
-		
 	</p>
 	
+	<h3>버튼 클릭시 post방식으로 서버에 여러개의 데이터 전송및 응답</h3>
+	이름 : <input type="text" id="input1_1"><br>
+	나이 : <input type="number" id="input1_2"><br>
+	<button onclick="test()">전송</button><br>
+	
+	<script>
+		function test(){
+			$.ajax({
+				url : "/jsp/jqAjax.do",
+				data: {
+					name: $("#input1_1").val(),
+					age: document.querySelector("#input1_2").value
+				},
+				type:"post",
+				success:function(result){
+					
+				},
+				error:function(){
+					
+				}
+			})
+		}
+	</script>
 </body>
 </html>

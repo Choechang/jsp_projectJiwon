@@ -139,8 +139,6 @@
 							 alert("이미 존재하거나 탈퇴한 회원입니다.");
 							 idInput.focus();
 						 }
-
-            			
             		},
             		error: function(){
             			console.log("아이디 중복체크용 ajax통신실패");
