@@ -40,8 +40,11 @@
 	 <p>XML기술을 이용해서 기존의 JSP문법을 확장시키는 기술을 제공하는 태그들</p>
 	 
 	 <h3>1. 표준액션태그</h3>
-	 <a href="views/2_standardAction/01_include.jsp">01_jsp:include</a>
+	 <a href="views/2_standardAction/01_include.jsp">01_jsp:include</a><br>
+	 <a href="views/2_standardAction/02_forward.jsp">02_jsp:forward</a><br>
 	 
+	 <h3>2. 커스텀액션태그(JSTL)</h3>
+	 <a href="views/3_customAction/jstl.jsp">JSTL</a>
 	 
 </body>
 </html>
