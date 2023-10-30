@@ -244,5 +244,22 @@
 			<li>${ d }</li>
 		</c:forTokens>
 	</ol>
+	
+	<h6>6. url, 쿼리스트링 - url, param</h6>
+	<pre>
+	-url경로를 생성하고, 쿼리스트링을 정의해 둘 수 있는 태그
+	
+	c:url var="변수명" value="요청할url"
+		c:param name="키값" value="전달할값" /
+		c:param name="키값" value="전달할값" /
+	/c:url
+	</pre>
+	
+	<a href="list.do?cpage=1&num=2">기존방식</a><br>
+	<c:url var="listUrl" value="list.do">
+		<c:param name="cpage" value="1"/>
+		<c:param name="num" value="2"/>
+	</c:url>
+	<a href="${ listUrl }">c:url 이용한방식</a><br>
 </body>
 </html>
